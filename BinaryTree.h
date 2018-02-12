@@ -1,36 +1,31 @@
-#include<iostream>
-#include<queue>
+#include <iostream>
+#include <queue>
+#include "BinaryTreeNode.h"
 
 using namespace std;
 
-struct BinaryTreeNode
-{
-	int data;
-	struct BinaryTreeNode *left, *right;
-};
-
-
+template <typename T>
 class BinaryTree
 {
 private:
-	struct BinaryTreeNode *root;
-	struct BinaryTreeNode* GetDataAllocated(int data)
+	BinaryTreeNode<T> *root;
+	BinaryTreeNode<T>* GetDataAllocated(T data)
 	{
-		struct BinaryTreeNode* temp = (struct BinaryTreeNode*)malloc(sizeof(struct BinaryTreeNode));
+		BinaryTreeNode<T>* temp = (BinaryTreeNode<T>*)malloc(sizeof(BinaryTreeNode<T>));
 		temp->data = data;
 		temp->left = NULL;
 		temp->right = NULL;
 		return temp;
 	}
 public:
-	BinaryTree(int data)
+	BinaryTree(T data)
 	{
 		root = GetDataAllocated(data);
 	}
 
 	void PrintBinaryTree()
 	{
-		queue<struct BinaryTreeNode*> binaryTreeQueue;
+		queue<BinaryTreeNode<T>*> binaryTreeQueue;
 		binaryTreeQueue.push(root);
 		while(!binaryTreeQueue.empty())
 		{
@@ -62,9 +57,9 @@ public:
 
 	}
 
-	void InsertInBinaryTree(struct BinaryTreeNode* elementNode)
+	void InsertInBinaryTree(BinaryTreeNode<T>* elementNode)
 	{
-		queue<struct BinaryTreeNode*> binaryTreeQueue;
+		queue<BinaryTreeNode<T>*> binaryTreeQueue;
 		binaryTreeQueue.push(root);
 		while(!binaryTreeQueue.empty())
 		{
@@ -92,7 +87,7 @@ public:
 	}
 
 
-	void InsertRecursivly(struct BinaryTreeNode* currentNode, struct BinaryTreeNode* elementNode)
+	void InsertRecursivly(BinaryTreeNode<T>* currentNode, BinaryTreeNode<T>* elementNode)
 	{
 		if(currentNode->left == NULL)
 		{
